@@ -1,7 +1,9 @@
 <script>
+// @ts-nocheck
+
 import localforage from 'https://esm.run/localforage';
 import Nav from './lib/Nav.svelte'
-let db = localforage.createInstance({ name: "api_key" })
+let db = localforage.createInstance({ name: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEM2NUZkOEY2NkRlRDJCZTZkRWM0RDVGNjg3NDAwMzI0RmQyRTdmYkYiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY4MzIxMzI0NTk5OSwibmFtZSI6InRlc3QifQ.1K4D3ZRCJKanOuDfUeXEllRFHQqazCwk_BdACNCsT64" })
 let key = "";
 let disabled;
 db.getItem("key").then((_key) => {
@@ -16,6 +18,7 @@ const save = async () => {
 <div class='top'>
 <form class='form' on:submit|preventDefault|stopPropagation={save}>
   <div class='item'>
+    <!-- svelte-ignore a11y-label-has-associated-control -->
     <label>NFT.STORAGE API KEY</label>
     {#if disabled}
       <input disabled type='text' placeholder="NFT.STORAGE key" bind:value={key}>
